@@ -1,11 +1,11 @@
 # Home-Energy-Optimization
 The study finds out the most economical strategy for a One-family home in Germany.
-# Overview
+## Overview
 
-# Methodology
+## Methodology
 
-# Results
+## Results
 
-# Tools used (Python, Excel, etc.)
+## Tools used (Python, Excel, etc.)
 
-# Next steps
+## Next steps
