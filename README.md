@@ -1,12 +1,1 @@
-# Home-Energy-Optimization
-
-## Overview
-The study finds out the most economical strategy for a One-family home in Germany.
-
-## Methodology
-
-## Results
-
-## Tools used (Python, Excel, etc.)
-
-## Next steps
+The Optimization projects done in this repo are the follow ups of the Optimization of Energy Systems lectures given by Prof. Moog at Hochschule Ansbach.
