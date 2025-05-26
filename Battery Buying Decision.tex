@@ -1,0 +1,89 @@
+\RequirePackage{cmap}
+\RequirePackage{amsmath}
+\documentclass[oneside]{book}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\setlength{\parindent}{0mm}
+\usepackage{graphicx}
+\graphicspath{ {./Python_Notes/} }	
+\title{Optimization of Energy Systems}
+\author{Sharada Poudel}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Overview}
+Optimization is a problem solving method where a real problem is modeled into solvable mathematical equations and optimal values of variables are solved. 
+
+\section{Battery Storage Buying Decision}
+
+\subsection{Problem Statement}
+We have Professor Moog's Home PV plant. The specifications are:
+\begin{itemize}
+\item PV Plant: 8.8 kWp
+\item Inverter: 8 kW
+\end{itemize}
+
+Energy Balance in 2021 was:
+\begin{itemize}
+\item Import from the Grid: 2131 kWh
+\item Export to the Grid: 5925 kWh
+\item PV yield: 7528 kWh
+\end{itemize}
+\subsection{Observations}
+Instantaneous Data Observation: The PV plant produces at max 8.8 kWp so having an inverter with capacity to translate 8kW DC into AC is enough. \\
+Yearly Data Observation: A large part of the PV yield was sent to the grid, leading to lower self consumption. 
+The supporting mathematical calculation is:
+\[\text{Self-consumption rate}= \frac{\text{PV Yield} - \text{Export to Grid}}{\text{PV Yield}}\]
+\[=\frac{1603}{7528}\]
+\[\approx 21.3\%\]
+
+With the added import from the Grid, the consumption of the home is 3734kWh/year. Out of which 43\% is only supplied by PV even though it produces double the electricity than required. 
+\[\text{Self-sufficiency}= \frac{\text{PV Yield} - \text{Export to Grid}}{\text{Total Consumption}}\]
+\[=\frac{1603}{3734}\]
+\[\approx 43\%\]
+\subsection{Assumptions}
+We assume that all the unexported PV yield was consumed. Potential losses and curtailments are not addressed since it makes up a small percentage of the yield. 
+\subsection{Modeling}
+The question we should ask ourselves is what is the potential solution to this low self-consumption rate. Battery Storage is the primary solution for this problem. \\
+Factors that determine the installation of Battery System:
+\begin{itemize}
+\item Price\\
+Price must be one of the most important aspect of choosing which battery to install or even to install the battery or not.
+\item Capacity\\
+The production and consumption pattern of the house also makes way for an optimal capacity to be installation of the battery.
+\item Warranty Period\\
+It is always good to know that your product will last longer. Mostly, home battery storage systems have 10 years warranty.
+\end{itemize}
+
+\textbf{Market Prices Analysis}
+\begin{figure}[h]
+\includegraphics[scale=0.8]{Battery_Market_Prices}
+\centering
+\end{figure}
+
+
+The graph shows that the prices and capacities have approximately linear correlation \footnote{The prices are generic and were taken via a quick web search. They are subjected to change.}. But the actual number that really affects the buying decision is Cost per stored kWh.
+
+We already have an equation that decides which capacity would give the least price i.e. \[ \text{Price (euros)}=185.98* C (kWh) +1289.52 \] The problem with this equation is that it only talks about the initial investment in the battery. It is good to know what your budget should be for the time being. 
+
+The Battery Economics also comes to play here. A very powerful graph is plotted 'Cost per stored kWh' Vs 'Capacity'. It shows that the cost reduces steeply with the increase in capacity but after a certain capacity the slope is more or less horizontal. So the goal is to find the sweet spot in the graph that meets the requirements of the home. One line of graph represent one constant number of cycles. You can compare with the different number of cycles to see how your utility will affect the cost of stored kWh. 
+
+So, the objective equation becomes:
+\[ \text{Cost per stored kWh} = \frac{185.98* \text{Capacity(kWh)} +1289.52}{\text{Capacity(kWh)}*\text{number of cycles}} \]
+
+\subsection{Analysis}
+The objective function depends on Capacity and number of cycles. Given the simplicity of the problem on hand, we use excel's What-if Analysis and find the sweet spot.
+\begin{figure}[h]
+\includegraphics{cost_vs_capacity}
+\end{figure}
+
+We can see that the sweet spot in Battery Economics lies in between 7 to 10 kWh capacity size. Based on the value added by the last addition, 10kWh is the best choice. 
+
+
+\end{document}
